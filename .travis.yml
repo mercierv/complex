@@ -3,12 +3,12 @@ services:
   - docker
 
 before_install:
-  - docker build -t mercierv/complex-test -f ./client/Dockerfile.dev .
+  - docker build -t mercierv/complex -f ./client/Dockerfile.dev ./client
 
 language: generic
 
 script:
-  - docker run -e CI=true mercierv/complex-test npm run test
+  - docker run -e CI=true mercierv/complex npm run test
 
 after_success:
   - docker build -t mercierv/complex-client ./client
