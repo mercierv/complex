@@ -9,3 +9,9 @@ language: generic
 
 script:
   - docker run -e CI=true mercierv/complex-test npm run test
+
+after_success:
+  - docker build -t mercierv/complex-client ./client
+  - docker build -t mercierv/complex-nginx ./nginx
+  - docker build -t mercierv/complex-server ./server
+  - docker build -t mercierv/complex-worker ./worker
